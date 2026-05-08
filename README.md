@@ -217,6 +217,64 @@ git push -u origin main
 
 Replace `YOUR_USERNAME` and `YOUR_REPOSITORY` with your GitHub account and repository name.
 
+## Deployment
+
+This project is set up for a split deployment:
+
+- Backend API: Render web service
+- Frontend: Vercel static Vite app
+
+### Deploy Backend To Render
+
+1. Push this repository to GitHub.
+2. Open the Render Dashboard.
+3. Choose New > Blueprint.
+4. Connect the GitHub repository.
+5. Render will read `render.yaml` from the repository root.
+6. Deploy the `hookboard-api` service.
+
+The backend service uses:
+
+- Root directory: `Backend`
+- Build command: `npm install`
+- Start command: `npm start`
+- Health check: `/health`
+
+After deployment, copy the Render URL. It will look similar to:
+
+```text
+https://hookboard-api.onrender.com
+```
+
+### Deploy Frontend To Vercel
+
+1. Open the Vercel Dashboard.
+2. Choose Add New > Project.
+3. Import the same GitHub repository.
+4. Set the project root directory to `Frontend_react`.
+5. Add this environment variable:
+
+```text
+VITE_API_BASE_URL=https://YOUR_RENDER_BACKEND_URL
+```
+
+For example:
+
+```text
+VITE_API_BASE_URL=https://hookboard-api.onrender.com
+```
+
+6. Deploy.
+
+The frontend uses `Frontend_react/vercel.json` for the Vite build settings.
+
+### Deployment Notes
+
+- Render provides the production `PORT` automatically.
+- Vercel must receive `VITE_API_BASE_URL` before building, because Vite embeds environment variables at build time.
+- Render free services can sleep after inactivity, so the first request after a pause may take a little longer.
+- The backend currently stores webhook data in `Backend/db.json`. On free ephemeral hosting, this data may reset across redeploys or instance restarts.
+
 ## Notes
 
 - Do not commit `node_modules`, `dist`, `.env`, or `Backend/db.json`.

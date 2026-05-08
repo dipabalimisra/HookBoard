@@ -18,6 +18,7 @@ if (typeof process.loadEnvFile === 'function') {
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const HOST = process.env.HOST || '0.0.0.0';
 
 // Setup DB
 const dbFile = path.join(__dirname, 'db.json');
@@ -27,6 +28,10 @@ const db = new Low(adapter, { hooks: [], requests: {} });
 app.use(cors());
 app.use(bodyParser.json({ limit: '2mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
 
 // Initialize DB
 async function initDB() {
@@ -87,7 +92,7 @@ app.get('/api/hooks/:id/export', async (req, res) => {
 });
 
 initDB().then(() => {
-  const server = app.listen(PORT, () => {
+  const server = app.listen(PORT, HOST, () => {
     console.log(`Server running on http://localhost:${PORT}`);
   });
 
