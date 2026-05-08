@@ -43,14 +43,14 @@ Hookboard — a local webhook tester & mock server (Node.js + Express backend, R
 
 4) Run locally (example ports)
 - Backend: port 5000
-- Frontend: port 3000
+- Frontend: port 5173
 - Commands (PowerShell):
   - cd server; npm install; npm run dev
   - open new terminal: cd client; npm install; npm start
 
 5) Simple security / constraints
 - Only local usage (do not expose on public host unless you know the risk).
-- Add .env.example (e.g., PORT=4000) and .gitignore (node_modules, .env, db.json if you prefer).
+- Add .env.example (e.g., PORT=5000) and .gitignore (node_modules, .env, db.json if you prefer).
 
 6) Tests & sanity checks
 - Use curl/postman to POST to /h/:id and verify UI shows it.
