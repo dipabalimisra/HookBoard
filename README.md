@@ -39,10 +39,10 @@ Hookboard — a local webhook tester & mock server (Node.js + Express backend, R
   - Hooks list + create form (POST /api/hooks).
   - Hook detail: list of requests for that hook, ability to view full JSON, replay (POST to /h/:id with saved body), export JSON.
   - Use polling (every 2s) or socket.io for live updates.
-- Proxy API calls in package.json (if CRA): "proxy": "http://localhost:4000" or use absolute URLs.
+- Proxy API calls in package.json (if CRA): "proxy": "http://localhost:5000" or use absolute URLs.
 
 4) Run locally (example ports)
-- Backend: port 4000
+- Backend: port 5000
 - Frontend: port 3000
 - Commands (PowerShell):
   - cd server; npm install; npm run dev
@@ -238,7 +238,7 @@ The backend service uses:
 - Start command: `npm start`
 - Health check: `/health`
 
-After deployment, copy the Render URL. (https://hookboard-api.onrender.com)
+After deployment, copy the Render URL. [https://hookboard-api.onrender.com](https://hookboard-api.onrender.com)
 
 
 ### Deploy Frontend To Vercel
