@@ -215,8 +215,6 @@ git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
 git push -u origin main
 ```
 
-Replace `YOUR_USERNAME` and `YOUR_REPOSITORY` with your GitHub account and repository name.
-
 ## Deployment
 
 This project is set up for a split deployment:
@@ -240,11 +238,8 @@ The backend service uses:
 - Start command: `npm start`
 - Health check: `/health`
 
-After deployment, copy the Render URL. It will look similar to:
+After deployment, copy the Render URL. (https://hookboard-api.onrender.com)
 
-```text
-https://hookboard-api.onrender.com
-```
 
 ### Deploy Frontend To Vercel
 
@@ -254,15 +249,7 @@ https://hookboard-api.onrender.com
 4. Set the project root directory to `Frontend_react`.
 5. Add this environment variable:
 
-```text
-VITE_API_BASE_URL=https://YOUR_RENDER_BACKEND_URL
-```
-
-For example:
-
-```text
 VITE_API_BASE_URL=https://hookboard-api.onrender.com
-```
 
 6. Deploy.
 
